@@ -9,6 +9,7 @@ export default function Header() {
       <InputSeachContainer>
         <input type="text" placeholder="Digite oque nome que quer procurar" />
       </InputSeachContainer>
+
     </Container>
   );
 }

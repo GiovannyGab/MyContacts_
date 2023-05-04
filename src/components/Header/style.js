@@ -25,4 +25,5 @@ export const InputSeachContainer = styled.div`
     color: #BCBCBC;
   }
  }
+
 `;
