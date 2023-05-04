@@ -9,9 +9,9 @@ export default createGlobalStyle`
 
 }
  body {
-  background:${(props) => props.theme.backgroundcolor};
+  background:${(props) => props.theme.colors.background};
   font-size: 16px;
-  color: ${(props) => props.theme.textcolor};
+
 }
 button{
   cursor: pointer;
