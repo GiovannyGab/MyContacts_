@@ -1,9 +1,10 @@
 import React from 'react';
+import PageHeader from '../../components/PageHeader';
 
 export default function Edit() {
   return (
     <div>
-      Edit pAge
+      <PageHeader title="Editar" />
     </div>
   );
 }
