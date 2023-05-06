@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.header`
 display: flex;
 flex-direction: column;
+margin-bottom: 24px;
 a {
 
 display: flex;
@@ -20,7 +21,7 @@ display: flex;
   }
 }
 .title{
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color: #222222;
 }

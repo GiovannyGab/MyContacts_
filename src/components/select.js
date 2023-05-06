@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Select = styled.select`
+const Select = styled.select`
 
 background-color: #fff;
 width: 100%;
@@ -20,3 +20,4 @@ transition: border-color 0.2s ease-in;
   border-color: ${(props) => props.theme.colors.primary.main};
 }
 `;
+export default Select;

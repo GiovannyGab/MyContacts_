@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Container, Header, ListContainer, ListBody, Card, InputSeachContainer,
 } from './styles';
@@ -14,7 +15,7 @@ export default function Home() {
       </InputSeachContainer>
       <Header>
         <strong>Contatos 3</strong>
-        <a href="/">Novo Contato</a>
+        <Link to="/new">Novo Contato</Link>
       </Header>
 
       <ListContainer>
@@ -38,35 +39,15 @@ export default function Home() {
             </div>
 
             <div className="actions">
-              <a href="/">
+              <Link to="/edit/123">
                 <img src={edit} alt="edit" />
-              </a>
+              </Link>
               <button type="button">
                 <img src={deleteb} alt="delete" />
               </button>
             </div>
           </Card>
-          <Card>
-            <div className="info">
-              <div className="contact-header">
-                <strong>Giovanny Gabriel</strong>
-                <small>Instagram</small>
-              </div>
-              <div className="contact-info">
-                <span>giovanny.gabrieldsn@gmail.com</span>
-                <span>87988261615</span>
-              </div>
-            </div>
 
-            <div className="actions">
-              <a href="/">
-                <img src={edit} alt="edit" />
-              </a>
-              <button type="button">
-                <img src={deleteb} alt="delete" />
-              </button>
-            </div>
-          </Card>
         </ListBody>
       </ListContainer>
     </Container>
