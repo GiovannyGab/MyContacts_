@@ -13,16 +13,21 @@ font-weight: bold;
 transition: background 0.2s ease-in;
 
 &:hover{
-  background-color: ${(props) => props.theme.colors.primary.light};
+  background-color: ${(props) => (
+    props.danger ? props.theme.danger.light : props.theme.colors.primary.light
+  )}
 
 }
 &:active{
-  background-color: ${(props) => props.theme.colors.primary.dark};
+  background-color: ${(props) => (
+    props.danger ? props.theme.danger.dark : props.theme.colors.primary.dark
+  )}
 }
 
 &[disabled]{
   background-color: #ccc;
   cursor: default;
 }
+
 
 `;

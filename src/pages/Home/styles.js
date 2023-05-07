@@ -106,6 +106,7 @@ export const InputSeachContainer = styled.div`
  width: 100%;
  margin-bottom: 32px;
  input {
+
   width: 100%;
   background-color: #fff;
   border: none;

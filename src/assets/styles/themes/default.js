@@ -12,4 +12,9 @@ export default {
     g200: '#BCBCBC',
     g900: '#222222',
   },
+  danger: {
+    main: '#FC5050',
+    light: '#F97171',
+    dark: '#F63131',
+  },
 };

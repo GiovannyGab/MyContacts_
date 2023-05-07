@@ -11,6 +11,7 @@ top: 0;
 display: flex;
 align-items: center;
 justify-content: center;
+z-index: 10;
 `;
 
 export const Container = styled.div`
@@ -24,7 +25,9 @@ box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
 h1{
   font-size: 22px;
   font-weight: bold;
-  color: #FC5050;
+  color: ${(props) => (
+    props.danger ? '#FC5050' : '#222222'
+  )};
 }
 p{
   color: #222222;
@@ -44,7 +47,21 @@ align-items: center;
    margin-right: 8px;
 }
 .button-action{
-  background: #FC5050;
+  background-color: ${(props) => (
+    props.danger ? props.theme.danger.main : props.theme.colors.primary.main
+  )};
+  &:hover{
+  background-color: ${(props) => (
+    props.danger ? props.theme.danger.light : props.theme.colors.primary.light
+  )}
+
+}
+&:active{
+  background-color: ${(props) => (
+    props.danger ? props.theme.danger.dark : props.theme.colors.primary.dark
+  )}
+}
+
 border-radius: 4px;
 color: #fff;
 font-weight: bold;
