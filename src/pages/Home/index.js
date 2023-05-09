@@ -6,12 +6,11 @@ import {
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import deleteb from '../../assets/images/icons/deleteb.svg';
-import Modal from '../../components/Modal';
 
 export default function Home() {
   return (
     <Container>
-      <Modal danger />
+
       <InputSeachContainer>
         <input type="text" placeholder="Digite oque nome que quer procurar" />
       </InputSeachContainer>

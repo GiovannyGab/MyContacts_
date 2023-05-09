@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Input = styled.input`
 
@@ -20,4 +20,8 @@ transition: border-color 0.2s ease-in;
 &:hover{
   border-color: ${(props) => props.theme.colors.primary.main};
 }
+${({ theme, error }) => error && css`
+color: ${theme.danger.main};
+border-color: ${theme.danger.main} !important;
+`}
 `;

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {} from 'react';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import { Container, Overlay, Footer } from './style';
 import { Button } from '../button';
 
 export default function Modal({ danger }) {
-  return (
+  return ReactDOM.createPortal(
     <Overlay>
       <Container danger={danger}>
         <h1>Titulo Modal</h1>
@@ -14,7 +15,8 @@ export default function Modal({ danger }) {
           <Button type="button" className="button-action">Deletar</Button>
         </Footer>
       </Container>
-    </Overlay>
+    </Overlay>,
+    document.getElementById('fullscreen-root'),
   );
 }
 
