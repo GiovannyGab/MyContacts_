@@ -13,6 +13,7 @@ padding: 0px 16px;
 font-size: 16px;
 border: 2px solid #fff;
 transition: border-color 0.2s ease-in;
+appearance: none;
 & +&{
     margin-top: 16px;
   }

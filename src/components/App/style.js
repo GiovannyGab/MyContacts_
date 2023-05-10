@@ -6,4 +6,5 @@ max-width: 500px;
 justify-content: center;
 align-items: center;
 margin: 0 auto;
+padding: 0 16px;
 `;
