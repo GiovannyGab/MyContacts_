@@ -30,7 +30,7 @@ export const Header = styled.div`
     }
   }
 `;
-export const ListContainer = styled.div`
+export const ListHeader = styled.header`
   margin-top: 24px;
 
   .sort-button {
@@ -47,6 +47,13 @@ export const ListContainer = styled.div`
     margin-right: 8px;
     font-weight: bold;
   }
+  button{
+    .img-arrow{
+      transform: ${({ orderBy }) => (orderBy === 'asc' ? 'rotate(180deg)' : 'rotate(0deg)')};
+      transition: transform 0.2s ease-in;
+      }
+  }
+
 `;
 
 export const ListBody = styled.div`
