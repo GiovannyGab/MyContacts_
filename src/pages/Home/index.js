@@ -13,7 +13,7 @@ import edit from '../../assets/images/icons/edit.svg';
 import deleteb from '../../assets/images/icons/deleteb.svg';
 
 import Loader from '../../components/Loader/index';
-import delay from '../../utils/delay';
+import ContactsService from '../../services/ContactsService';
 
 export default function Home() {
   const [contacts, setContacts] = useState([]);
@@ -21,23 +21,23 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  const filteredContacts = contacts.filter((contact) => (
-    contact.name.toLowerCase().includes(searchTerm)
-  ));
+  const filteredContacts = (contacts.filter((contact) => contact.name.toLowerCase()
+    .includes(searchTerm)));
   useEffect(() => {
-    setIsLoading(true);
-    fetch(`http://localhost:3001/contacts?orderBy=${order}`)
-      .then(async (res) => {
-        await delay(2000);
-        const json = await res.json();
-        setContacts(json);
-      })
-      .catch((error) => {
-        console.log('error', error);
-      })
-      .finally(() => {
+    async function loadContacts() {
+      try {
+        setIsLoading(true);
+
+        const contactsList = await ContactsService.ContactList(order);
+
+        setContacts(contactsList);
+      } catch (error) {
+        console.log(error);
+      } finally {
         setIsLoading(false);
-      });
+      }
+    }
+    loadContacts();
   }, [order]);
 
   function HandleToggleOrderBy() {
@@ -68,27 +68,25 @@ export default function Home() {
 
       <ListHeader orderBy={order}>
         {filteredContacts.length > 0 && (
-        <button type="button" className="sort-button" onClick={HandleToggleOrderBy}>
-          <span>Nome</span>
-          <img src={arrow} alt="Arrow" className="img-arrow" />
-        </button>
+          <button
+            type="button"
+            className="sort-button"
+            onClick={HandleToggleOrderBy}
+          >
+            <span>Nome</span>
+            <img src={arrow} alt="Arrow" className="img-arrow" />
+          </button>
         )}
-
       </ListHeader>
       <ListBody>
         {filteredContacts.map((contact) => (
           <Card key={contact.id}>
             <div className="info">
               <div className="contact-header">
-                <strong>
-                  {contact.name}
-                </strong>
+                <strong>{contact.name}</strong>
                 {contact.category_name && (
-                  <small>
-                    {contact.category_name}
-                  </small>
+                  <small>{contact.category_name}</small>
                 )}
-
               </div>
               <div className="contact-info">
                 <span>{contact.email}</span>
@@ -106,9 +104,7 @@ export default function Home() {
             </div>
           </Card>
         ))}
-
       </ListBody>
-
     </Container>
   );
 }
