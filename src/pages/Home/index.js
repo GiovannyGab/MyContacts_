@@ -12,22 +12,31 @@ import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import deleteb from '../../assets/images/icons/deleteb.svg';
 
+import Loader from '../../components/Loader/index';
+import delay from '../../utils/delay';
+
 export default function Home() {
   const [contacts, setContacts] = useState([]);
   const [order, setOrder] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const filteredContacts = contacts.filter((contact) => (
     contact.name.toLowerCase().includes(searchTerm)
   ));
   useEffect(() => {
+    setIsLoading(true);
     fetch(`http://localhost:3001/contacts?orderBy=${order}`)
       .then(async (res) => {
+        await delay(2000);
         const json = await res.json();
         setContacts(json);
       })
       .catch((error) => {
         console.log('error', error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [order]);
 
@@ -40,6 +49,7 @@ export default function Home() {
 
   return (
     <Container>
+      <Loader isLoading={isLoading} />
       <InputSeachContainer>
         <input
           type="text"
