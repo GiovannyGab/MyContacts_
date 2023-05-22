@@ -11,6 +11,8 @@ export default {
   gray: {
     g200: '#BCBCBC',
     g900: '#222222',
+    g100: '#E6E6E6',
+
   },
   danger: {
     main: '#FC5050',
