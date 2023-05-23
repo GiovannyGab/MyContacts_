@@ -7,7 +7,7 @@ export const Container = styled.div`
 export const Header = styled.div`
   display: flex;
 
-  justify-content: ${({ hasError }) => (hasError ? 'flex-end' : 'space-between')};
+  justify-content: ${({ justifyContent }) => justifyContent};
   align-items: center;
   border-bottom: 2px solid ${(props) => props.theme.gray.g100};
   padding-bottom: 16px;
@@ -151,5 +151,22 @@ span{
  font-size: 22px;
  padding-bottom: 8px;
 }
+}
+`;
+
+export const NoContactsContainer = styled.div`
+display: flex;
+align-items:  center;
+justify-content: center;
+margin-top: 16px;
+flex-direction: column;
+span{
+  margin-top: 8px;
+  font-size: 16px;
+  color:  ${(props) => props.theme.gray.g200};
+ text-align: center;
+  strong{
+    color: ${(props) => props.theme.colors.primary.main};
+  }
 }
 `;

@@ -25,7 +25,8 @@
        "import/no-named-as-default": "off",
        "import/no-named-as-default-member": "off",
        "react/jsx-no-bind": "off",
-       "class-methods-use-this": "off"
+       "class-methods-use-this": "off",
+       "no-nested-ternary": "off"
 
     }
 }

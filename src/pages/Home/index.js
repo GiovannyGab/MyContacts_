@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/jsx-indent */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -8,11 +10,14 @@ import {
   Card,
   InputSeachContainer,
   ErrorContainer,
+  NoContactsContainer,
+
 } from './styles';
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import deleteb from '../../assets/images/icons/deleteb.svg';
 import sad from '../../assets/images/icons/sad.svg';
+import emptyBox from '../../assets/images/icons/empty-box.svg';
 
 import Loader from '../../components/Loader/index';
 import ContactsService from '../../services/ContactsService';
@@ -33,6 +38,7 @@ export default function Home() {
       setIsLoading(true);
 
       const contactsList = await ContactsService.ContactList(order);
+
       setHasError(false);
       setContacts(contactsList);
     } catch (error) {
@@ -59,6 +65,7 @@ export default function Home() {
   return (
     <Container>
       <Loader isLoading={isLoading} />
+      {contacts.length > 0 && (
       <InputSeachContainer>
         <input
           type="text"
@@ -67,8 +74,16 @@ export default function Home() {
           value={searchTerm}
         />
       </InputSeachContainer>
-      <Header hasError={HasError}>
-        {!HasError && (
+      )}
+
+      <Header justifyContent={
+        HasError ? 'flex-end' : (
+          contacts.length > 0 ? 'space-between'
+            : 'center'
+        )
+      }
+      >
+        {!HasError && contacts.length > 0 && (
           <strong>
             {filteredContacts.length}
             {filteredContacts.length === 1 ? ' Contato' : ' Contatos'}
@@ -87,6 +102,18 @@ export default function Home() {
           </div>
         </ErrorContainer>
       )}
+
+      {(!HasError && contacts.length === 0 && !isLoading) && (
+      <NoContactsContainer>
+        <img src={emptyBox} alt="emptyBox" />
+        <span>
+        Você ainda não tem nenhum contato cadastrado!
+        Clique no botão <strong>”Novo contato”</strong> à cima
+        para cadastrar o seu primeiro!
+        </span>
+      </NoContactsContainer>
+      )}
+
       {!HasError && (
       <>
         <ListHeader orderBy={order}>
