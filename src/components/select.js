@@ -20,5 +20,9 @@ appearance: none;
 &:hover{
   border-color: ${(props) => props.theme.colors.primary.main};
 }
+&[disabled]{
+  background-color:${(props) => props.theme.gray.g100} ;
+  border-color:${(props) => props.theme.gray.g200} ;
+}
 `;
 export default Select;

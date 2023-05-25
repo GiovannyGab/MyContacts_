@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from '../input';
@@ -19,6 +20,7 @@ export default function ContactForm({ buttonLabel }) {
   const [phone, setPhone] = useState('');
   const [categories, setCategories] = useState([]);
   const [categoriesId, setCategoriesId] = useState('');
+  const [selectIsLoading, setSelectIsLoading] = useState(true);
 
   const {
     removeError, setError, getErrorMessageByFieldName, errors,
@@ -28,9 +30,11 @@ export default function ContactForm({ buttonLabel }) {
 
   useEffect(() => {
     async function loadCategories() {
-      const categoriesList = await CategoriesService.listCategories();
+      try {
+        const categoriesList = await CategoriesService.listCategories();
 
-      setCategories(categoriesList);
+        setCategories(categoriesList);
+      } catch (error) {} finally { setSelectIsLoading(false); }
     }
     loadCategories();
   }, []);
@@ -102,12 +106,13 @@ export default function ContactForm({ buttonLabel }) {
           maxLength={15}
         />
       </FormGroup>
-      <FormGroup>
+      <FormGroup isLoading={selectIsLoading}>
         <Select
           placeholder="Categoria"
           className="last-select"
           value={categoriesId}
           onChange={(event) => setCategoriesId(event.target.value)}
+          disabled={selectIsLoading}
         >
           <option value="">Sem Categoria</option>
           {categories.map((category) => (
