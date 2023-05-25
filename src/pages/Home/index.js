@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/jsx-indent */
 import React, { useEffect, useState } from 'react';
@@ -11,13 +12,15 @@ import {
   InputSeachContainer,
   ErrorContainer,
   NoContactsContainer,
+  SearchNotFoundContainer,
 
 } from './styles';
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
-import deleteb from '../../assets/images/icons/deleteb.svg';
+import deleteb from '../../assets/images/icons/delete.svg';
 import sad from '../../assets/images/icons/sad.svg';
 import emptyBox from '../../assets/images/icons/empty-box.svg';
+import magnifierQuestion from '../../assets/images/icons/magnifier-question.svg';
 
 import Loader from '../../components/Loader/index';
 import ContactsService from '../../services/ContactsService';
@@ -112,6 +115,13 @@ export default function Home() {
         para cadastrar o seu primeiro!
         </span>
       </NoContactsContainer>
+      )}
+      {(!HasError && contacts.length > 1 && filteredContacts < 1) && (
+        <SearchNotFoundContainer>
+        <img src={magnifierQuestion} alt="lupa" />
+        <span>Nenhum resultado foi encontrado para <strong>”{searchTerm}”</strong>.</span>
+
+        </SearchNotFoundContainer>
       )}
 
       {!HasError && (

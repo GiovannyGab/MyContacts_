@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from '../input';
 import Select from '../select';
@@ -11,24 +11,36 @@ import formatPhone from '../../utils/phoneMask';
 // hooks
 import useError from '../../hooks/useError';
 
+import CategoriesService from '../../services/CategoriesService';
+
 export default function ContactForm({ buttonLabel }) {
   const [name, setname] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState([]);
+  const [categoriesId, setCategoriesId] = useState('');
 
   const {
     removeError, setError, getErrorMessageByFieldName, errors,
   } = useError();
 
   const isFormValid = (name && errors.length === 0);
+
+  useEffect(() => {
+    async function loadCategories() {
+      const categoriesList = await CategoriesService.listCategories();
+
+      setCategories(categoriesList);
+    }
+    loadCategories();
+  }, []);
   function handleSubmit(event) {
     event.preventDefault();
     console.log({
       name,
       email,
       phone,
-      category,
+      categoriesId,
     });
   }
 
@@ -94,12 +106,14 @@ export default function ContactForm({ buttonLabel }) {
         <Select
           placeholder="Categoria"
           className="last-select"
-          value={category}
-          onChange={(event) => setCategory(event.target.value)}
+          value={categoriesId}
+          onChange={(event) => setCategoriesId(event.target.value)}
         >
-          <option value="">Categoria</option>
-          <option label="instagram" value="instagram" />
-          <option label="twitter" value="twiter" />
+          <option value="">Sem Categoria</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id} label={category.name} />
+
+          ))}
         </Select>
       </FormGroup>
       <FormGroup>
