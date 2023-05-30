@@ -11,7 +11,9 @@ border-radius: 4px;
 font-size: 16px;
 font-weight: bold;
 transition: background 0.2s ease-in;
-
+display: flex;
+align-items: center;
+justify-content: center;
 &:hover{
   background-color: ${(props) => (
     props.danger ? props.theme.danger.light : props.theme.colors.primary.light

@@ -25,4 +25,9 @@ ${({ theme, error }) => error && css`
 color: ${theme.danger.main};
 border-color: ${theme.danger.main} !important;
 `}
+&[disabled]{
+  background-color:${(props) => props.theme.gray.g100} ;
+  border-color:${(props) => props.theme.gray.g200} ;
+  opacity:1;
+}
 `;

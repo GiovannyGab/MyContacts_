@@ -25,6 +25,12 @@ class HttpClient {
       headers.append('Content-Type', 'application/json');
     }
 
+    if (options.headers) {
+      (Object.entries(options.headers).forEach(({ name, value }) => {
+        headers.append(name, value);
+      }));
+    }
+
     const response = await fetch(path, {
       method: options.method,
       body: JSON.stringify(options.body),
