@@ -19,6 +19,7 @@ export default function NewContact() {
         {
           type: 'sucess',
           text: 'Cadastrado com Sucesso',
+          duration: '7000',
         },
       );
 
@@ -28,7 +29,7 @@ export default function NewContact() {
         {
           type: 'error',
           text: 'Ocorreu um erro ao cadastrar o contato!',
-
+          duration: 7000,
         },
       );
     }

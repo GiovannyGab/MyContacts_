@@ -95,7 +95,7 @@ export default function ContactForm({ buttonLabel, onSubmit }) {
       >
         <Input
           type="email"
-          placeholder="E-mail"
+          placeholder="E-mail *"
           error={getErrorMessageByFieldName('email')}
           value={email}
           onChange={handleEmailChange}
