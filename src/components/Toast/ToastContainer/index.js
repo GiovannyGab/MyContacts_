@@ -6,12 +6,13 @@ export default function ToastContainer() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    function handleAddToast(event, { duration }) {
+    function handleAddToast(event, duration) {
       const { type, text } = event.detail;
       setMessages((prevState) => [...prevState, {
         id: Math.random(), type, text, duration,
       }]);
     }
+
     document.addEventListener('addtoast', handleAddToast);
 
     return () => {

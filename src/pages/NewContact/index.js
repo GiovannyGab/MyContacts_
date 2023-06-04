@@ -19,7 +19,7 @@ export default function NewContact() {
         {
           type: 'sucess',
           text: 'Cadastrado com Sucesso',
-          duration: '7000',
+          duration: 7000,
         },
       );
 

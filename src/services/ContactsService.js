@@ -1,7 +1,7 @@
 import httpClient from './utils/HttpClient';
 
 class ContactsService {
-  async ContactList(order = 'asc') {
+  ContactList(order = 'asc') {
     return httpClient.get(`http://localhost:3001/contacts?orderBy=${order}`, {
       headers: {
         Autorization: 'meuToken',
@@ -9,7 +9,11 @@ class ContactsService {
     });
   }
 
-  async CreateContact(contacts) {
+  getContactById(id) {
+    return httpClient.get(`http://localhost:3001/contacts/${id}`);
+  }
+
+  CreateContact(contacts) {
     return httpClient.post('http://localhost:3001/contacts', { body: contacts });
   }
 }

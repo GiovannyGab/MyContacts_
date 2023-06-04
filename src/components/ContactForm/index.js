@@ -39,16 +39,20 @@ export default function ContactForm({ buttonLabel, onSubmit }) {
     }
     loadCategories();
   }, []);
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     setIsSubmitting(true);
-    onSubmit({
+    await onSubmit({
       name,
       email,
       phone,
       categoriesId,
     }).finally(() => {
       setIsSubmitting(false);
+      setname('');
+      setEmail('');
+      setPhone('');
+      setCategoriesId('');
     });
   }
 
@@ -95,7 +99,7 @@ export default function ContactForm({ buttonLabel, onSubmit }) {
       >
         <Input
           type="email"
-          placeholder="E-mail *"
+          placeholder="E-mail "
           error={getErrorMessageByFieldName('email')}
           value={email}
           onChange={handleEmailChange}

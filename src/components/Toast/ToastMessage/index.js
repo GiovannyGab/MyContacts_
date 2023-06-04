@@ -8,7 +8,7 @@ export default function ToastMessage({
   id, text, type, onRemoveMessage, duration,
 }) {
   useEffect(() => {
-    const timeoutId = setTimeout(() => { onRemoveMessage(id); }, duration || 7000);
+    const timeoutId = setTimeout(() => { onRemoveMessage(id); }, duration || 6000);
 
     return () => {
       clearTimeout(timeoutId);

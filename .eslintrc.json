@@ -27,7 +27,8 @@
        "react/jsx-no-bind": "off",
        "class-methods-use-this": "off",
        "no-nested-ternary": "off",
-       "consistent-return": "off"
+       "consistent-return": "off",
+       "no-empty":"off"
 
     }
 }
