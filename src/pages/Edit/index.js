@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import PageHeader from '../../components/PageHeader';
 import ContactForm from '../../components/ContactForm';
@@ -8,19 +8,21 @@ import toast from '../../services/utils/toast';
 
 export default function Edit() {
   const [isLoading, setIsloading] = useState(true);
+
+  const contactFormRef = useRef(null);
   const { id } = useParams();
   const history = useHistory();
   useEffect(() => {
     async function loadContacts() {
       try {
-        const contactdata = ContactsService.getContactById(id);
-        console.log({ contactdata });
+        const contactdata = await ContactsService.getContactById(id);
+        contactFormRef.current.setFieldsValues(contactdata);
         setIsloading(false);
       } catch {
         history.push('/');
         toast({
           type: 'error',
-          text: 'contato não encontrado',
+          text: 'contato não encontrado!',
         });
       }
     }
@@ -35,7 +37,11 @@ export default function Edit() {
       <Loader isLoading={isLoading} />
       <PageHeader title="Editar Giovanny Gabriel" />
 
-      <ContactForm buttonLabel="Salvar Alterações" onSubmit={handleSubmit} />
+      <ContactForm
+        ref={contactFormRef}
+        buttonLabel="Salvar Alterações"
+        onSubmit={handleSubmit}
+      />
     </div>
   );
 }
