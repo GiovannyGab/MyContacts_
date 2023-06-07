@@ -13,8 +13,16 @@ class ContactsService {
     return httpClient.get(`http://localhost:3001/contacts/${id}`);
   }
 
-  CreateContact(contacts) {
+  createContact(contacts) {
     return httpClient.post('http://localhost:3001/contacts', { body: contacts });
+  }
+
+  updateContact(id, contact) {
+    return httpClient.put(`http://localhost:3001/contacts/${id}`, { body: contact });
+  }
+
+  deleteContact(id) {
+    return httpClient.delete(`http://localhost:3001/contacts/${id}`);
   }
 }
 

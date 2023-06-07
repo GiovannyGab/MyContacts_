@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Overlay = styled.div`
-position: absolute;
+
 background: rgba(0, 0, 0, 0.6);
 backdrop-filter: blur(5px);
-position: absolute;
+position: fixed;
 width: 100%;
 height: 100%;
 left: 0;
@@ -20,9 +20,12 @@ background-color: #fff;
 border-radius: 4px;
 max-width: 454px;
 width: 100%;
-height: 204px;
+height: 250px;
 padding: 24px;
 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
+.modal-body{
+  margin-top: 32px;
+}
 h1{
   font-size: 22px;
   font-weight: bold;
@@ -45,8 +48,9 @@ align-items: center;
  background-color: #fff;
    border: none;
    font-size: 16px;
-   margin-right: 8px;
+   margin-right: 28px;
 }
+
 .button-action{
   background-color: ${(props) => (
     props.danger ? props.theme.danger.main : props.theme.colors.primary.main

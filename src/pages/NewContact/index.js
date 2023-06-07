@@ -1,11 +1,13 @@
 /* eslint-disable no-restricted-globals */
-import React from 'react';
+import React, { useRef } from 'react';
+
 import PageHeader from '../../components/PageHeader';
 import ContactsService from '../../services/ContactsService';
 import ContactForm from '../../components/ContactForm';
 import toast from '../../services/utils/toast';
 
 export default function NewContact() {
+  const ContactFormRef = useRef(null);
   async function handleSubmit(formData) {
     try {
       const contacts = {
@@ -14,7 +16,8 @@ export default function NewContact() {
         phone: formData.phone,
         category_id: formData.categoriesId,
       };
-      const response = await ContactsService.CreateContact(contacts);
+      const response = await ContactsService.createContact(contacts);
+
       toast(
         {
           type: 'sucess',
@@ -22,7 +25,7 @@ export default function NewContact() {
           duration: 7000,
         },
       );
-
+      ContactFormRef.current.resetFields();
       return response;
     } catch (error) {
       toast(
@@ -38,6 +41,7 @@ export default function NewContact() {
     <div>
       <PageHeader title="Novo Contato" />
       <ContactForm
+        ref={ContactFormRef}
         buttonLabel="Cadastrar"
         onSubmit={handleSubmit}
       />
