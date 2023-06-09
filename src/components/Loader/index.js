@@ -1,17 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+
 import PropTypes from 'prop-types';
 import { Overlay } from './style';
+import ReactPortals from '../ReactPortals';
 
 export default function Loader({ isLoading }) {
   if (!isLoading) {
     return null;
   }
-  return ReactDOM.createPortal(
-    <Overlay>
-      <div className="loader" />
-    </Overlay>,
-    document.getElementById('fullscreen-root'),
+
+  return (
+    <ReactPortals containerId="loader-root">
+      <Overlay>
+        <div className="loader" />
+      </Overlay>
+      ,
+    </ReactPortals>
 
   );
 }

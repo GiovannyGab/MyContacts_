@@ -109,7 +109,7 @@ export default function Home() {
   danger
   visible={modalVisible}
   title={`Tem certeza que deseja remover o contato ”${contactBeingDeletected.name}”?`}
-  buttonLabel="cancel"
+  buttonLabel="Deletar"
   onCancel={handleModalCancel}
   onConfirm={handleModalConfirmDeleated}
 ><p>Esta ação não poderá ser desfeita!</p>
