@@ -2,16 +2,19 @@ import ContactMapper from './mappers/ContactMapper';
 import httpClient from './utils/HttpClient';
 
 class ContactsService {
-  ContactList(order = 'asc') {
-    return httpClient.get(`http://localhost:3001/contacts?orderBy=${order}`, {
+  async ContactList(order = 'asc') {
+    const contacts = await httpClient.get(`http://localhost:3001/contacts?orderBy=${order}`, {
       headers: {
         Autorization: 'meuToken',
       },
     });
+    return contacts.map((contact) => ContactMapper.toDomain(contact));
   }
 
-  getContactById(id) {
-    return httpClient.get(`http://localhost:3001/contacts/${id}`);
+  async getContactById(id) {
+    const contact = await httpClient.get(`http://localhost:3001/contacts/${id}`);
+
+    return ContactMapper.toDomain(contact);
   }
 
   createContact(contacts) {

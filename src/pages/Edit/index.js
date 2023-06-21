@@ -31,15 +31,9 @@ export default function Edit() {
     loadContacts();
   }, [id, history]);
 
-  async function handleSubmit(formData) {
+  async function handleSubmit(contact) {
     try {
-      const contacts = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        category_id: formData.categoriesId,
-      };
-      const response = await ContactsService.updateContact(id, contacts);
+      const response = await ContactsService.updateContact(id, contact);
       setTitle(response.name);
 
       toast(

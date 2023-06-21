@@ -1,19 +1,26 @@
 class ContactMapper {
-  toPersistence(persistenceContact) {
+  toPersistence(domainContact) {
     return {
-      name: persistenceContact.name,
-      email: persistenceContact.email,
-      phone: persistenceContact.phone,
-      category_id: persistenceContact.categoriesId,
-    };
-  }
-
-  toDomain(domainContact) {
-    return {
+      id: domainContact.id,
       name: domainContact.name,
       email: domainContact.email,
       phone: domainContact.phone,
       category_id: domainContact.categoriesId,
+    };
+  }
+
+  toDomain(persistenceContact) {
+    return {
+      id: persistenceContact.id,
+
+      name: persistenceContact.name,
+      email: persistenceContact.email,
+      phone: persistenceContact.phone,
+      category: {
+        id: persistenceContact.categories_Id,
+        name: persistenceContact.category_name,
+      },
+
     };
   }
 }

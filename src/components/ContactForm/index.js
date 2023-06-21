@@ -49,7 +49,7 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
         setName(contact.name || '');
         setEmail(contact.email || '');
         setPhone(formatPhone(contact.phone || ''));
-        setCategoriesId(contact.category_id);
+        setCategoriesId(contact.category.id);
       },
       resetFields: () => {
         setName('');

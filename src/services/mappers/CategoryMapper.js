@@ -1,15 +1,15 @@
 class CategoryMapper {
-  toPersistence(persistenceContact) {
+  toPersistence(persistenceCategory) {
     return {
-      name: persistenceContact.name,
-
+      name: persistenceCategory.name,
+      id: persistenceCategory.id,
     };
   }
 
-  toDomain(domainContact) {
+  toDomain(domainCategory) {
     return {
-      name: domainContact.name,
-
+      name: domainCategory.name,
+      id: domainCategory.id,
     };
   }
 }
