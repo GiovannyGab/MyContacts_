@@ -8,15 +8,9 @@ import toast from '../../services/utils/toast';
 
 export default function NewContact() {
   const ContactFormRef = useRef(null);
-  async function handleSubmit(formData) {
+  async function handleSubmit(contact) {
     try {
-      const contacts = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        category_id: formData.categoriesId,
-      };
-      const response = await ContactsService.createContact(contacts);
+      const response = await ContactsService.createContact(contact);
 
       toast(
         {

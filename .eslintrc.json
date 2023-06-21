@@ -3,32 +3,23 @@
         "browser": true,
         "es2021": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb"
-    ],
-    "overrides": [
-    ],
+    "extends": "airbnb",
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
     "rules": {
-      "react/jsx-filename-extension": [1,{"extensions":[".js",".jsx"]}],
-      "react/react-in-jsx-scope": "off",
-      "linebreak-style": "off",
-      "import/no-extraneous-dependencies": "off",
-      "import/prefer-default-export": "off",
-       "import/no-named-as-default": "off",
-       "import/no-named-as-default-member": "off",
-       "react/jsx-no-bind": "off",
-       "class-methods-use-this": "off",
-       "no-nested-ternary": "off",
-       "consistent-return": "off",
-       "no-empty":"off"
-
+        "react/jsx-filename-extension": [1,{"extensions":[".js",".jsx"]}],
+        "react/react-in-jsx-scope": "off",
+        "linebreak-style": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/prefer-default-export": "off",
+         "import/no-named-as-default": "off",
+         "import/no-named-as-default-member": "off",
+         "react/jsx-no-bind": "off",
+         "class-methods-use-this": "off",
+         "no-nested-ternary": "off",
+         "consistent-return": "off",
+         "no-empty":"off"
     }
 }
