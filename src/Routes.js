@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
-import Edit from './pages/Edit';
+import EditContact from './pages/Edit';
 import NewContact from './pages/NewContact';
 
 function Routes() {
@@ -9,7 +9,7 @@ function Routes() {
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/new" component={NewContact} />
-      <Route path="/edit/:id" component={Edit} />
+      <Route path="/edit/:id" component={EditContact} />
 
     </Switch>
   );
