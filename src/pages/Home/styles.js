@@ -4,35 +4,6 @@ export const Container = styled.div`
   margin-top: 39px;
 `;
 
-export const Header = styled.div`
-  display: flex;
-
-  justify-content: ${({ justifyContent }) => justifyContent};
-  align-items: center;
-  border-bottom: 2px solid ${(props) => props.theme.gray.g100};
-  padding-bottom: 16px;
-  strong {
-    font-size: 24px;
-    color: #222222;
-  }
-  a {
-    font-family: "Sora";
-    font-style: normal;
-    color: ${(props) => props.theme.colors.primary.main};
-    text-decoration: none;
-    border: 2px solid ${(props) => props.theme.colors.primary.main};
-    font-size: 16px;
-    padding: 8px 16px;
-    border-radius: 4px;
-    transition: all 0.2s ease-in-out;
-
-    &:hover {
-      background: ${(props) => props.theme.colors.primary.main};
-      color: #fff;
-    }
-  }
-
-`;
 export const ListHeader = styled.header`
   margin-top: 24px;
 
@@ -111,27 +82,7 @@ export const Card = styled.div`
     }
   }
 `;
-export const InputSeachContainer = styled.div`
 
- width: 100%;
- margin-bottom: 32px;
- input {
-
-  width: 100%;
-  background-color: #fff;
-  border: none;
-  border-radius: 25px;
-  height: 50px;
-  filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.04));
-  outline: 0;
-  padding: 0 16px;
-
-  &::placeholder{
-    color: #BCBCBC;
-  }
- }
-
-`;
 export const ErrorContainer = styled.div`
 margin-top: 16px;
 display: flex;
