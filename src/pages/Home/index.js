@@ -2,33 +2,23 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/jsx-indent */
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 import {
   Container,
 
-  ListHeader,
-  ListBody,
-  Card,
-
-  ErrorContainer,
-  NoContactsContainer,
-  SearchNotFoundContainer,
-
 } from './styles';
-import arrow from '../../assets/images/icons/arrow.svg';
-import edit from '../../assets/images/icons/edit.svg';
-import deleteb from '../../assets/images/icons/delete.svg';
-import sad from '../../assets/images/icons/sad.svg';
-import emptyBox from '../../assets/images/icons/empty-box.svg';
-import magnifierQuestion from '../../assets/images/icons/magnifier-question.svg';
+import ListBody from './components/ListBody';
 
 import Loader from '../../components/Loader/index';
 
-import { Button } from '../../components/button';
 import Modal from '../../components/Modal';
 import useHome from './useHome';
 import InputSearch from './components/InputSearch';
 import Header from './components/Header';
+import ErrorStatus from './components/ErrorStatus';
+import EmptyList from './components/EmptyList';
+import NotFoundSeach from './components/NotFoundSeach';
+import ListHeader from './components/ListHeader';
 
 export default function Home() {
   const {
@@ -55,77 +45,30 @@ export default function Home() {
         <InputSearch value={searchTerm} onChange={HandleChangeSearch} />
       )}
 
-      <Header HasError={HasError} contacts={contacts} filteredContacts={filteredContacts} />
+      <Header
+        HasError={HasError}
+        contacts={contacts}
+        filteredContacts={filteredContacts}
+      />
       {HasError && (
-        <ErrorContainer>
-          <img src={sad} alt="sad" />
-          <div className="details">
-            <span>Ocorreu um Erro ao obter os seus Contatos! </span>
-            <Button type="button" onClick={handleTryAgain}>Tentar Novamente</Button>
-          </div>
-        </ErrorContainer>
+        <ErrorStatus onTryAgain={handleTryAgain} />
       )}
 
       {(!HasError && contacts.length === 0 && !isLoading) && (
-      <NoContactsContainer>
-        <img src={emptyBox} alt="emptyBox" />
-        <span>
-        Você ainda não tem nenhum contato cadastrado!
-        Clique no botão <strong>”Novo contato”</strong> à cima
-        para cadastrar o seu primeiro!
-        </span>
-      </NoContactsContainer>
+     <EmptyList />
       )}
       {(!HasError && contacts.length > 1 && filteredContacts < 1) && (
-        <SearchNotFoundContainer>
-        <img src={magnifierQuestion} alt="lupa" />
-        <span>Nenhum resultado foi encontrado para <strong>”{searchTerm}”</strong>.</span>
-
-        </SearchNotFoundContainer>
+       <NotFoundSeach searchTerm={searchTerm} />
       )}
 
       {!HasError && (
       <>
-        <ListHeader orderBy={order}>
-          {filteredContacts.length > 0 && (
-          <button
-            type="button"
-            className="sort-button"
-            onClick={HandleToggleOrderBy}
-          >
-            <span>Nome</span>
-            <img src={arrow} alt="Arrow" className="img-arrow" />
-          </button>
-          )}
-        </ListHeader>
-        <ListBody>
-          {filteredContacts.map((contact) => (
-            <Card key={contact.id}>
-              <div className="info">
-                <div className="contact-header">
-                  <strong>{contact.name}</strong>
-                  {contact.category.name && (
-                  <small>{contact.category.name}</small>
-                  )}
-                </div>
-                <div className="contact-info">
-                  <span>{contact.email}</span>
-                  <span>{contact.phone}</span>
-                </div>
-              </div>
-
-              <div className="actions">
-                <Link to={`/edit/${contact.id}`}>
-                  <img src={edit} alt="edit" />
-                </Link>
-                <button type="button" onClick={() => handleDelete(contact)}>
-                  <img src={deleteb} alt="delete" />
-                </button>
-              </div>
-            </Card>
-          ))}
-
-        </ListBody>
+       <ListHeader
+         order={order}
+         onToggleOrderBy={HandleToggleOrderBy}
+         filteredContacts={filteredContacts}
+       />
+        <ListBody filteredContacts={filteredContacts} onDelete={handleDelete} />
         <Modal
           danger
           visible={modalVisible}

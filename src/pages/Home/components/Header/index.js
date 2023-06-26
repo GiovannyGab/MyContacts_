@@ -24,7 +24,25 @@ export default function Header({ HasError, contacts, filteredContacts }) {
 
 Header.propTypes = {
   HasError: PropTypes.bool.isRequired,
-  contacts: PropTypes.number.isRequired,
-  filteredContacts: PropTypes.number.isRequired,
+  contacts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+    category: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+
+  })).isRequired,
+  filteredContacts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+    category: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+
+  })).isRequired,
 
 };
