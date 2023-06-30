@@ -1,34 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { } from 'react';
 import PropTypes from 'prop-types';
 
 import { Container, Overlay, Footer } from './style';
 import { Button } from '../button';
 import ReactPortals from '../ReactPortals';
+import useAnimatedUnmouted from '../../hooks/useAnimatedUnmouted';
 
 export default function Modal({
   danger, title, children, buttonLabel, onCancel, onConfirm, visible,
 }) {
-  const [shoudRender, setShoudRender] = useState(visible);
-
-  useEffect(() => {
-    if (visible) {
-      setShoudRender(true);
-    }
-    let timeoutID;
-    if (!visible) {
-      timeoutID = setTimeout(() => { setShoudRender(false); }, [200]);
-    }
-
-    return () => { clearTimeout(timeoutID); };
-  }, [visible]);
-
-  if (!shoudRender) {
+  const { shouldRender, animatedElementRef } = useAnimatedUnmouted(visible);
+  if (!shouldRender) {
     return null;
   }
   return (
 
     <ReactPortals containerId="modal-root">
-      <Overlay isLeaving={!visible}>
+      <Overlay isLeaving={!visible} ref={animatedElementRef}>
         <Container danger={danger} isLeaving={!visible}>
           <h1>{title}</h1>
           <div className="modal-body">

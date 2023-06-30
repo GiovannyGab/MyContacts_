@@ -45,6 +45,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 z-index: 10;
+
 .loader {
   color: ${({ theme }) => theme.colors.primary.main};
   font-size: 90px;
